@@ -1,9 +1,9 @@
-$(function() {
+$(document).ready(function() {
     $("#tabel").DataTable();
     loadData();
+    // $(".select2").select2();
     $(".select2bs4").select2({
         theme: "bootstrap4",
-
     });
 
     $("#btn_add").click(function() {
@@ -50,7 +50,6 @@ $(function() {
         // alert('Apakah Ini Berfungsi ??');
         //$('#modal_add').modal('show');
         //reset();
-
         var cek = $(".cek:checked");
         if (cek.length > 0) {
             var id = [];
@@ -98,46 +97,59 @@ $(function() {
 
     function reset() {
         // $('#id_brg').val('');
-        $("#nama_brg").val("");
-        $("#satuan").val("");
-        $("#jenis").val("");
+        $("#tgl_masuk").val("");
+        $("#barang_select").val("").change();
+        $("#nm_barang").val("");
         $("#stok").val("");
-        $("#harga").val("");
+        $("#jml_masuk").val("");
     }
+
+    $(document).on("change", "#barang_select", function(e) {
+        var id = $(this).val();
+        var str_data = "id=" + id;
+        $.ajax({
+            url: "formBrgMasuk/cari.php",
+            type: "get",
+            data: str_data,
+            dataType: "json",
+            success: function(data) {
+                if (data && typeof data === "object") {
+                    $("#nm_barang").val(data.nama_barang);
+                    $("#stok").val(data.stok_saat_ini);
+                } else {
+                    console.error("Invalid data received from the server");
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX error:", status, error);
+            },
+        });
+    });
+
     $(document).on("click", "#btn_simpan", function(e) {
         // alert('Apakah Ini Berfungsi ??');
-        var id_brg = $("#id_brg").val();
-        var nama_brg = $("#nama_brg").val();
-        var satuan = $("#satuan").val();
-        var jenis = $("#jenis").val();
-        var stok = $("#stok").val();
-        var harga = $("#harga").val();
-        if (id_brg == "") {
-            alert("id_brg wajib di isi !!");
-        } else if (nama_brg == "") {
-            alert("nama_brg wajib di isi !!");
-        } else if (satuan == "") {
-            alert("satuan wajib di isi !!");
-        } else if (jenis == "") {
-            alert("jenis wajib di isi !!");
-        } else if (stok == "") {
-            alert("stok wajib di isi !!");
-        } else if (harga == "") {
-            alert("harga wajib di isi !!");
+        var id_masuk = $("#id_masuk").val();
+        var tgl_masuk = $("#tgl_masuk").val();
+        var id_barang = $("#barang_select").val();
+        var jml = $("#jml_masuk").val();
+        if (id_masuk == "") {
+            alert("id_masuk wajib di isi !!");
+        } else if (tgl_masuk == "") {
+            alert("tgl_masuk wajib di isi !!");
+        } else if (id_barang == "") {
+            alert("id_barang wajib di isi !!");
+        } else if (jml == "") {
+            alert("jml wajib di isi !!");
         } else {
             var str_data =
-                "id_brg=" +
-                id_brg +
-                "&nama_brg=" +
-                nama_brg +
-                "&satuan=" +
-                satuan +
-                "&jenis=" +
-                jenis +
-                "&stok=" +
-                stok +
-                "&harga=" +
-                harga;
+                "id_masuk=" +
+                id_masuk +
+                "&tgl_masuk=" +
+                tgl_masuk +
+                "&id_barang=" +
+                id_barang +
+                "&jml=" +
+                jml;
             $.ajax({
                 type: "POST",
                 url: "formBrgMasuk/add.php",
@@ -169,10 +181,9 @@ $(function() {
                         });
                     } else {
                         // alert(data);
-
                         Toast.fire({
                             icon: "info",
-                            title: "Data Berhasil ditambahkan",
+                            title: "Data Gagal ditambahkan",
                         });
                         // toastr.info(data);
                     }
@@ -296,7 +307,7 @@ function delete_data(a) {
         url: "formBrgMasuk/delete.php",
         type: "POST",
         data: {
-            user_id: a,
+            id_masuk: a,
         },
         success: function(data) {
             if ((data = "1")) {

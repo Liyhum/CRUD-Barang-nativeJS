@@ -34,21 +34,18 @@
               <div class="card-body">
               <div class="form-group">
                 <button class="btn btn-info btn-sm" id="btn_add">Add Data</button>
-                <button class="btn btn-warning btn-sm" id="btn_edit">Edit Data</button>
-                <button class="btn btn-danger btn-sm" id="btn_delete">Delete Data</button>
                 
               </div>
                 <table id="tabel" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th></th>
                     <th>No</th>
+                    <th>ID Masuk</th>
+                    <th>Tanggal Masuk</th>
                     <th>ID Barang</th>
                     <th>Nama Barang</th>
-                    <th>Jenis</th>
-                    <th>Satuan</th>
-                    <th>Stok Awal</th>
-                    <th>Harga</th>
+                    <th>Jumlah Masuk</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -82,6 +79,6 @@
 <?php include 'partial/footer.php';?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./assets/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
-
 <script src="formBrgMasuk/brg_masuk.js"></script>
+
 <div id="konten"></div>

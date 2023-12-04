@@ -12,11 +12,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Project web</title>
   <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="assets/AdminLTE/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="assets/AdminLTE/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="assets/AdminLTE/https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="assets/AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
@@ -38,6 +38,7 @@
 
   <!-- jQuery -->
   <script src="assets/AdminLTE/plugins/jquery/jquery.min.js"></script>
+  
   <!-- jQuery UI 1.11.4 -->
   <script src="assets/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -70,8 +71,6 @@
   <!-- <script src="assets/AdminLTE/dist/js/demo.js"></script> -->
   <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
   <script src="assets/AdminLTE/dist/js/pages/dashboard.js"></script>
-  <!-- jQuery -->
-  <script src="assets/AdminLTE/plugins/jquery/jquery.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="assets/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- DataTables  & Plugins -->
@@ -88,19 +87,18 @@
   <script src="assets/AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="assets/AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
-  <link rel="stylesheet" href="assets/AdminLTE/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="assets/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
-  <script src="assets/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
-  <script src="assets/AdminLTE/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-  
   <!-- AdminLTE App -->
   <script src="assets/AdminLTE/dist/js/adminlte.min.js"></script>
   <link rel="stylesheet" href="assets/bootstrap-toastr/toastr.css">
   <script src="assets/bootstrap-toastr/toastr.js"></script>
+  
   <!-- Bootstrap 4 -->
   <script src="assets/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  
+  <link rel="stylesheet" href="assets/AdminLTE/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="assets/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <script src="assets/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
+  <script src="assets/AdminLTE/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

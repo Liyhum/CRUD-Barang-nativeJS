@@ -1,6 +1,6 @@
 <?php
     include '../koneksi.php';
-    $query ="SELECT MAX(id_barang)AS kode FROM tb_barang";
+    $query ="SELECT MAX(id_masuk)AS kode FROM tb_masuk";
     $sql=mysqli_query($koneksi,$query);
     $data=mysqli_fetch_array($sql);
     $kode_brg=$data['kode'];
@@ -10,7 +10,8 @@
 
     $huruf="TM";
     $tgl = date('Ymd');
-    $idBarang=$huruf.'-'.$tgl.'-'.sprintf("%04s",$urutan);
+    $idMasuk =$huruf.'-'.$tgl.'-'.sprintf("%04s",$urutan);
+
 
 
 ?>
@@ -19,18 +20,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Input Data Master Barang</h4>
+                <h4 class="modal-title">Input Barang Masuk</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
                         <div class="modal-body">
+                            <label>ID Masuk</label>
+                            <input type="text" class="form-control" id="id_masuk" name="id_masuk" value="<?php echo $idMasuk ?>" readonly>
+                            <label>Tanggal Masuk</label>
+                            <input type="date" class="form-control" id="tgl_masuk" name="tgl_masuk">
                             <label>ID Barang</label>
-                            <input type="text" class="form-control" id="id_brg" name="id_brg" value="<?php echo $idBarang ?>" readonly>
-                            <label>Nama Barang</label>
-                            <input type="text" class="form-control" id="nama_brg" name="nama_brg">
-                            <label>Barang</label>
-                            <select name="satuan" class="form-control select2bs4" id="satuan" style="width: 100%;">
+                            <select name="barang_select" class="form-control select2bs4" id="barang_select" style="width: 100%;">
                                 <?php
                                 include '../koneksi.php';
                                 $query ="SELECT * FROM tb_barang";
@@ -40,10 +41,12 @@
                                 }
                                 ?>
                             </select>
+                            <label>Nama barang</label>
+                            <input type="text" class="form-control" id="nm_barang" name="nm_barang" readonly>
                             <label>Stok Awal</label>
-                            <input type="number" class="form-control" id="stok" name="stok">
-                            <label>Harga</label>
-                            <input type="number" class="form-control" id="harga" name="harga">
+                            <input type="number" class="form-control" id="stok" name="stok" readonly>
+                            <label>Jumlah Masuk</label>
+                            <input type="number" class="form-control" id="jml_masuk" name="jml_masuk">
 
                         </div>
                         <div class="modal-footer justify-content-between">

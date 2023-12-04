@@ -1,7 +1,7 @@
 <?php
     include '../koneksi.php';
-    $id_brg = $_GET['id_brg'];
-    $query ="SELECT * FROM tb_barang where id_barang='$id_brg'" ;
+    $id_masuk = $_GET['id_masuk'];
+    $query ="SELECT * FROM tb_masuk where id_masuk='$id_masuk'" ;
     $sql=mysqli_query($koneksi,$query);
     $data=mysqli_fetch_array($sql);
     $id_brg=$data['id_barang'];

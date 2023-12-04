@@ -2,9 +2,9 @@
 
 include "../koneksi.php";
 
-$id_brg = $_POST['id_brg'];
+$id_masuk = $_POST['id_masuk'];
 
-$query = "DELETE FROM tb_barang WHERE id_barang='$id_brg'";
+$query = "DELETE FROM tb_masuk WHERE id_masuk='$id_masuk'";
 mysqli_query($koneksi, $query) or die("gagal eksekusi SQL".mysqli_error());
 if ($query == true) {
     $data = '1';
