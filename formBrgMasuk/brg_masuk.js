@@ -22,6 +22,21 @@ $(document).ready(function() {
             },
         });
     });
+    $(document).on("click", "#btn_lihat", function(e) {
+        $.ajax({
+            url: "formBrgMasuk/modal_view.php", // Sesuaikan dengan path file PHP Anda
+            type: "GET", // Atau POST jika diperlukan
+            success: function(data) {
+                // Manipulasi atau tampilkan data di sini
+                $("#konten").html(data);
+
+                $("#modal_view_all").modal("show");
+            },
+            error: function(error) {
+                console.error("Error:", error);
+            },
+        });
+    });
 
     $("#btn_edit").click(function() {
         //alert('Apakah Ini Berfungsi ??');
@@ -140,13 +155,13 @@ $(document).ready(function() {
         var id_barang = $("#barang_select").val();
         var jml = $("#jml_masuk").val();
         if (id_masuk == "") {
-            alert("id_masuk wajib di isi !!");
+            alert("ID wajib di isi !!");
         } else if (tgl_masuk == "") {
-            alert("tgl_masuk wajib di isi !!");
+            alert("Tanggal wajib di isi !!");
         } else if (id_barang == "") {
-            alert("id_barang wajib di isi !!");
+            alert("Barang wajib di isi !!");
         } else if (jml == "") {
-            alert("jml wajib di isi !!");
+            alert("Jumlah wajib di isi !!");
         } else {
             var str_data =
                 "id_masuk=" +

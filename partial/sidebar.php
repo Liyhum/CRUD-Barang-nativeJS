@@ -56,9 +56,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="assets/AdminLTE/pages/mailbox/mailbox.html" class="nav-link">
+              
+                <a href="barang_masuk.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Penjualan</p>
+                  <p>Order</p>
+                </a>
+                <a href="barang_masuk.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Barang Masuk</p>
                 </a>
               </li>
             </ul>
@@ -80,10 +85,6 @@
                 <a href="satuan.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Satuan</p>
-                </a>
-                <a href="barang_masuk.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Data Barang Masuk</p>
                 </a>
               </li>
             </ul>

@@ -33,7 +33,7 @@
                     while($data_barang=mysqli_fetch_array($sql_barang)){
                         $select = ($barang_id == $data_barang['id_barang']) ? "selected" : "";
 
-                        echo "<option $select value='".$data_barang['id_barang']."'>".$data_barang['id_barang'].' - '.$data_barang['nama_barang']."</option>";
+                        echo "<option $select value='".$data_barang['id_barang']."'>".$data_barang['id_barang'].' - '.$data_barang['']."</option>";
                     }
                     ?>
                 </select>

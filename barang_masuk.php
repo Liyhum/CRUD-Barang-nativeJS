@@ -34,6 +34,7 @@
               <div class="card-body">
               <div class="form-group">
                 <button class="btn btn-info btn-sm" id="btn_add">Add Data</button>
+                <button class="btn btn-warning btn-sm" id="btn_lihat">Lihat Detail Data</button>
                 
               </div>
                 <table id="tabel" class="table table-bordered table-hover">
