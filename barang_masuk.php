@@ -79,6 +79,7 @@
 <?php include 'partial/footer.php';?>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="./assets/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="formBrgMasuk/brg_masuk.js"></script>
+
+<script src="formBrgMasuk/brg_masuk.js?tx=<?=date("YmDHis") ?>" ></script>
 
 <div id="konten"></div>

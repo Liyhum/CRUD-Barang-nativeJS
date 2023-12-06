@@ -95,10 +95,12 @@
   <!-- Bootstrap 4 -->
   <script src="assets/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   
+  
   <link rel="stylesheet" href="assets/AdminLTE/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="assets/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <script src="assets/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
   <script src="assets/AdminLTE/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+  
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

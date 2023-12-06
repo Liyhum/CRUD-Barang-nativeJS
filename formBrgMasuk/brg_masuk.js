@@ -2,11 +2,8 @@ $(document).ready(function() {
     $("#tabel").DataTable();
     loadData();
     // $(".select2").select2();
-    $(".select2bs4").select2({
-        theme: "bootstrap4",
-    });
 
-    $("#btn_add").click(function() {
+    $(document).on("click", "#btn_add", function(e) {
         //alert('Apakah Ini Berfungsi ??');
         //$('#modal_add').modal('show');
         //reset();
@@ -16,10 +13,16 @@ $(document).ready(function() {
             success: function(data) {
                 $("#konten").html(data);
                 $("#modal_add").modal("show");
+                console.log("KEBUKA ");
+
+                $(".select2bs4").select2({
+                    theme: "bootstrap4",
+                });
                 reset();
             },
         });
     });
+
     $("#btn_edit").click(function() {
         //alert('Apakah Ini Berfungsi ??');
         //$('#modal_add').modal('show');
@@ -38,6 +41,10 @@ $(document).ready(function() {
                     success: function(data) {
                         $("#konten").html(data);
                         $("#modal_edit").modal("show");
+
+                        $(".select2bs4").select2({
+                            theme: "bootstrap4",
+                        });
                         //reset();
                     },
                 });
