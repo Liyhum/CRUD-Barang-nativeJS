@@ -10,7 +10,6 @@ while ($result =mysqli_fetch_array($query)){
     <td><?php echo $no++;?></td>
     <td><?php echo $result['id_satuan'];?></td>
     <td><?php echo $result['satuan'];?></td>
-
     <td><button class="btn btn-sm btn-primary" onclick="edit_data('<?php echo $result['id_satuan'];?>')" value="<?php echo $result['id_satuan'];?>">Edit Data</button>
     <button class="btn btn-sm btn-danger" onclick="delete_data('<?php echo $result['id_satuan'];?>')">Delete</button></td>
 </tr>

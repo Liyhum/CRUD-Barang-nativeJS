@@ -18,8 +18,8 @@
     <td><?php echo $result['id_barang']; ?></td>
     <td><?php echo $result['nama_barang']; ?></td>
     <td><?php echo $result['jml_masuk']; ?></td>
-    <td><button class="btn btn-sm btn-primary" onclick="edit_data('<?php echo $result['user_id'];?>')">Edit Data</button>
-    <button class="btn btn-sm btn-danger" onclick="delete_data('<?php echo $result['user_id'];?>')">Delete</button></td>
+    <td><button class="btn btn-sm btn-primary" onclick="edit_data('<?php echo $result['id_masuk'];?>')" value="<?php echo $result['id_masuk'];?>">Edit Data</button>
+    <button class="btn btn-sm btn-danger" onclick="delete_data('<?php echo $result['id_masuk'];?>')">Delete</button></td>
 </tr>
 
 <?php } ?>

@@ -193,38 +193,29 @@ $(document).ready(function() {
     });
     $(document).on("click", "#btn_ubah", function(e) {
         // alert("Apakah Ini Berfungsi ??");
-        var id_brg_e = $("#id_brg_e").val();
-        var nama_brg_e = $("#nama_brg_e").val();
-        var jenis_e = $("#jenis_e").val();
-        var satuan_e = $("#satuan_e").val();
-        var stok_e = $("#stok_e").val();
-        var harga_e = $("#harga_e").val();
-        if (id_brg_e == "") {
-            alert("id_brg_e wajib di isi !!");
-        } else if (nama_brg_e == "") {
-            alert("nama_brg_e wajib di isi !!");
-        } else if (jenis_e == "") {
-            alert("jenis_e wajib di isi !!");
-        } else if (satuan_e == "") {
-            alert("satuan_e wajib di isi !!");
-        } else if (stok_e == "") {
-            alert("stok_e wajib di isi !!");
-        } else if (harga_e == "") {
-            alert("harga_e wajib di isi !!");
+        var id_masuk_e = $("#id_masuk_e").val();
+        var tgl_masuk_e = $("#tgl_masuk_e").val();
+        var jml_e = $("#jml_masuk_e").val();
+        var barang_id_e = $("#barang_id_e").val();
+
+        if (id_masuk_e == "") {
+            alert("id_masuk_e wajib di isi !!");
+        } else if (tgl_masuk_e == "") {
+            alert("tgl_masuk_e wajib di isi !!");
+        } else if (jml_e == "") {
+            alert("jml_e wajib di isi !!");
+        } else if (barang_id_e == "") {
+            alert("barang_id_e wajib di isi !!");
         } else {
             var str_data =
-                "id_brg=" +
-                id_brg_e +
-                "&nama_brg=" +
-                nama_brg_e +
-                "&jenis=" +
-                jenis_e +
-                "&satuan=" +
-                satuan_e +
-                "&stok=" +
-                stok_e +
-                "&harga=" +
-                harga_e;
+                "id_masuk=" +
+                id_masuk_e +
+                "&tgl_masuk=" +
+                tgl_masuk_e +
+                "&jml=" +
+                jml_e +
+                "&barang_id=" +
+                barang_id_e;
             $.ajax({
                 type: "POST",
                 url: "formBrgMasuk/edit.php",
@@ -254,7 +245,10 @@ $(document).ready(function() {
                         });
                     } else {
                         //alert(data);
-                        toastr.info(data);
+                        Toast.fire({
+                            icon: "info",
+                            title: data,
+                        });
                     }
                 },
             });
@@ -293,7 +287,7 @@ function edit_data(a) {
         url: "formBrgMasuk/modal_edit.php",
         type: "get",
         data: {
-            user_id: a,
+            id_masuk: a,
         },
         success: function(data) {
             $("#konten").html(data);
@@ -310,11 +304,28 @@ function delete_data(a) {
             id_masuk: a,
         },
         success: function(data) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                },
+            });
             if ((data = "1")) {
                 loadData();
-                toastr.success("Data Berhasil Dihapus");
+                Toast.fire({
+                    icon: "success",
+                    title: "Data Berhasil Dihapus",
+                });
             } else {
-                toastr.info(data);
+                Toast.fire({
+                    icon: "info",
+                    title: data,
+                });
             }
         },
     });
