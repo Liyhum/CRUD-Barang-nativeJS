@@ -35,19 +35,18 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+              with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="assets/AdminLTE/#" class="nav-link active">
+            <a href="index.php" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Home
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview"></ul>
           </li>
           <li class="nav-item">
-            <a href="assets/AdminLTE/#" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon far fa-envelope"></i>
               <p>
                 Transaksi
@@ -56,14 +55,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-              
                 <a href="barang_masuk.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Order</p>
+                  <p>Barang Masuk</p>
                 </a>
-                <a href="barang_masuk.php" class="nav-link">
+                <a href="brg_keluar.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data Barang Masuk</p>
+                  <p>Barang Keluar</p>
                 </a>
               </li>
             </ul>
@@ -86,6 +84,10 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Satuan</p>
                 </a>
+                <a href="jenis.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Data Jenis</p>
+                </a>
               </li>
             </ul>
           </li>
@@ -101,14 +103,11 @@
               <li class="nav-item">
                 <a href="user.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Data User
-                    <i class="fas fa-angle-left right"></i>
-                  </p>
+                  <p>Data User</p>
                 </a>
+              </li>
             </ul>
           </li>
-          
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

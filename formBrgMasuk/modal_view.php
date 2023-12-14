@@ -30,6 +30,7 @@
                             <th>ID Barang</th>
                             <th>Nama Barang</th>
                             <th>Jumlah Masuk</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,6 +42,10 @@
                                 <td><?php echo $data['id_barang']; ?></td>
                                 <td><?php echo $data['nama_barang']; ?></td>
                                 <td><?php echo $data['jml_masuk']; ?></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" onclick="edit_data('<?php echo $result['id_masuk'];?>')" value="<?php echo $result['id_masuk'];?>">Edit Data</button>
+                                    <button class="btn btn-sm btn-danger" onclick="delete_data('<?php echo $result['id_masuk'];?>')">Delete</button>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

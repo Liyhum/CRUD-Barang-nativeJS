@@ -7,12 +7,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Master Barang</h1>
+            <h1>Barang Keluar</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Data Master Barang</li>
+              <li class="breadcrumb-item active">Barang Keluar</li>
             </ol>
           </div>
         </div>
@@ -27,28 +27,39 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Data Master Barang</h3>
+                <h3 class="card-title">Barang Keluar</h3>
               </div>
 
               <!-- /.card-header -->
               <div class="card-body">
-              <div class="form-group">
-                <button class="btn btn-info btn-sm" id="btn_add">Add Data</button>
-                <button class="btn btn-warning btn-sm" id="btn_edit">Edit Data</button>
-                <button class="btn btn-danger btn-sm" id="btn_delete">Delete Data</button>
-                
-              </div>
+                  <div class="row">
+                      <div class="col-6 text-left">
+                          <label>Dari</label>
+                          <input type="date" id="start" 
+                              style="width: 150px; height: 30px; padding-buttom: 7px;">
+                          <label>Sampai</label>
+                          <input type="date" id="end" 
+                              style="width: 150px; height: 30px; padding-buttom: 7px;">
+                          <button class="btn btn-primary btn-sm" id="btn_filter">Filter Data</button>
+                      </div>
+                      <div class="col-6 text-right">
+                          <div class="form-group">
+                              <button class="btn btn-info btn-sm" id="btn_add">Add Data</button>
+            
+                      </div>
+                    </div>
+                </div>
+              
                 <table id="tabel" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th></th>
                     <th>No</th>
+                    <th>ID Keluar</th>
+                    <th>Tanggal Keluar</th>
                     <th>ID Barang</th>
                     <th>Nama Barang</th>
-                    <th>Jenis</th>
-                    <th>Satuan</th>
-                    <th>Stok Awal</th>
-                    <th>Harga</th>
+                    <th>Jumlah Keluar</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -78,9 +89,8 @@
         <!-- /.modal-dialog -->
 </div>
 <!-- untuk mencari no urut / id barang auto -->
-<?php include 'partial/footer.php';?>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="./assets/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
-
-<script src="barang/brg.js?tx=<?=date("YmDHis") ?>"></script>
 <div id="konten"></div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<?php include 'partial/footer.php';?>
+<script src="formKeluar/keluar.js?tx=<?=date("YmDHis") ?>"></script>
