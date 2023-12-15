@@ -1,15 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     $("#tabel").DataTable({
-        lengthMenu: [
-            [10, 20, 25, 50, 100, 15, 5, -1],
-            ["10", "20", "25", "50", "100", "15", "5", "Show all"],
-        ],
-        paging: true,
-        searching: false,
-        ordering: true,
+        dom: 'Bfrtip',
         buttons: [
-            'copy', 'excel', 'pdf'
-        ],
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
     });
 
     loadData();
@@ -25,16 +19,10 @@ function loadData() {
             $("#tabel").dataTable().fnDestroy();
             $("#tabel tbody").html(data);
             $("#tabel").dataTable({
-                lengthMenu: [
-                    [10, 20, 25, 50, 100, 15, 5, -1],
-                    ["10", "20", "25", "50", "100", "15", "5", "Show all"],
-                ],
-                paging: true,
-                searching: true,
-                ordering: true,
+                dom: 'Bfrtip',
                 buttons: [
-                    'excel', 'pdf'
-                ],
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
             });
         },
     });

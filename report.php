@@ -63,10 +63,9 @@
 </div>
 <div id="konten"></div>
 
-<?php include 'partial/footer.php'; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script src="formReport/report.js"></script>
-<script src="./assets/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<?php include 'partial/footer.php'; ?>
