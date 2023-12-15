@@ -1,28 +1,28 @@
-$(function() {
+$(function () {
     $("#tabel").DataTable();
     loadData();
-    $("#btn_add").click(function() {
+    $("#btn_add").click(function () {
         //alert('Apakah Ini Berfungsi ??');
         //$('#modal_add').modal('show');
         //reset();
         $.ajax({
             url: "barang/modal_add.php",
             type: "get",
-            success: function(data) {
+            success: function (data) {
                 $("#konten").html(data);
                 $("#modal_add").modal("show");
                 reset();
             },
         });
     });
-    $("#btn_edit").click(function() {
+    $("#btn_edit").click(function () {
         //alert('Apakah Ini Berfungsi ??');
         //$('#modal_add').modal('show');
         //reset();
         var cek = $(".cek:checked");
         if (cek.length == 1) {
             var id = [];
-            $(cek).each(function() {
+            $(cek).each(function () {
                 id.push($(this).val());
                 // alert(id);
                 var str_data = "id_brg=" + id;
@@ -30,7 +30,7 @@ $(function() {
                     url: "barang/modal_edit.php",
                     type: "get",
                     data: str_data,
-                    success: function(data) {
+                    success: function (data) {
                         $("#konten").html(data);
                         $("#modal_edit").modal("show");
                         //reset();
@@ -41,7 +41,7 @@ $(function() {
             alert("pilih data satu saja!!");
         }
     });
-    $(document).on("click", "#btn_delete", function(e) {
+    $(document).on("click", "#btn_delete", function (e) {
         // alert('Apakah Ini Berfungsi ??');
         //$('#modal_add').modal('show');
         //reset();
@@ -51,7 +51,7 @@ $(function() {
             var id = [];
             console.log(cek);
             reset();
-            $(cek).each(function() {
+            $(cek).each(function () {
                 id.push($(this).val());
                 // alert(id);
                 var str_data = "id_brg=" + id;
@@ -59,7 +59,7 @@ $(function() {
                     url: "barang/delete.php",
                     type: "POST",
                     data: str_data,
-                    success: function(data) {
+                    success: function (data) {
                         // alert(data);
                         if (data == "1") {
                             // alert('data berhasil dihapus');
@@ -99,7 +99,7 @@ $(function() {
         $("#stok").val("");
         $("#harga").val("");
     }
-    $(document).on("click", "#btn_simpan", function(e) {
+    $(document).on("click", "#btn_simpan", function (e) {
         // alert('Apakah Ini Berfungsi ??');
         var id_brg = $("#id_brg").val();
         var nama_brg = $("#nama_brg").val();
@@ -138,7 +138,7 @@ $(function() {
                 url: "barang/add.php",
                 dataType: "text",
                 data: str_data,
-                success: function(data) {
+                success: function (data) {
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "top-end",
@@ -175,7 +175,7 @@ $(function() {
             });
         }
     });
-    $(document).on("click", "#btn_ubah", function(e) {
+    $(document).on("click", "#btn_ubah", function (e) {
         // alert("Apakah Ini Berfungsi ??");
         var id_brg_e = $("#id_brg_e").val();
         var nama_brg_e = $("#nama_brg_e").val();
@@ -214,7 +214,7 @@ $(function() {
                 url: "barang/edit.php",
                 dataType: "text",
                 data: str_data,
-                success: function(data) {
+                success: function (data) {
                     const Toast = Swal.mixin({
                         toast: true,
                         position: "top-end",
@@ -254,7 +254,7 @@ function loadData() {
     $.ajax({
         url: "barang/getData.php",
         type: "get",
-        success: function(data) {
+        success: function (data) {
             $("#tabel").dataTable().fnClearTable();
             $("#tabel").dataTable().fnDraw();
             $("#tabel").dataTable().fnDestroy();
@@ -279,7 +279,7 @@ function edit_data(a) {
         data: {
             user_id: a,
         },
-        success: function(data) {
+        success: function (data) {
             $("#konten").html(data);
             $("#modal_edit").modal("show");
         },
@@ -293,7 +293,7 @@ function delete_data(a) {
         data: {
             user_id: a,
         },
-        success: function(data) {
+        success: function (data) {
             if ((data = "1")) {
                 loadData();
                 toastr.success("Data Berhasil Dihapus");

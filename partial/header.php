@@ -1,12 +1,13 @@
 <?php
-  session_start();
-  if ($_SESSION['status'] != 'login') {
-    header("location:login.php");
-  }
+session_start();
+if ($_SESSION['status'] != 'login') {
+  header("location:login.php");
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +39,7 @@
 
   <!-- jQuery -->
   <script src="assets/AdminLTE/plugins/jquery/jquery.min.js"></script>
-  
+
   <!-- jQuery UI 1.11.4 -->
   <script src="assets/AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -91,25 +92,27 @@
   <script src="assets/AdminLTE/dist/js/adminlte.min.js"></script>
   <link rel="stylesheet" href="assets/bootstrap-toastr/toastr.css">
   <script src="assets/bootstrap-toastr/toastr.js"></script>
-  
+
   <!-- Bootstrap 4 -->
   <script src="assets/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  
-  
+
+
   <link rel="stylesheet" href="assets/AdminLTE/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="assets/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <script src="assets/AdminLTE/plugins/select2/js/select2.full.min.js"></script>
   <script src="assets/AdminLTE/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-  
-  
+
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+  <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="assets/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+    <!-- Preloader -->
+    <div class="preloader flex-column justify-content-center align-items-center">
+      <img class="animation__shake" src="assets/AdminLTE/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    </div>
 
-  <?php include 'partial/navbar.php'; ?>
-  <?php include 'partial/sidebar.php'; ?>
+    <?php include 'partial/navbar.php'; ?>
+    <?php include 'partial/sidebar.php'; ?>

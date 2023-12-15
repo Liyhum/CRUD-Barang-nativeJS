@@ -14,7 +14,7 @@ if (empty($data['error'])){
     $query = "INSERT into tb_keluar set id_keluar='$id_keluar', tgl_keluar='$tgl_keluar', barang_id='$barang_id', jml_keluar='$jml_keluar',
     input_date='$input_date', updater='$user' ";
 
-    mysqli_query($koneksi, $query) or die("gagal eksekusi SQL".mysqli_error());
+    mysqli_query($koneksi, $query) or die("gagal eksekusi SQL".mysqli_error($koneksi));
     $data = 1;
 } else {
     $data = "gagal";

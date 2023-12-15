@@ -13,7 +13,7 @@ LEFT JOIN
 LEFT JOIN
     tb_keluar ON tb_barang.id_barang = tb_keluar.barang_id
 GROUP BY
-    tb_barang.id_barang, tb_barang.nama_barang, tb_barang.jenis, tb_barang.status, tb_barang.stok_awal, tb_barang.harga, tb_barang.satuan
+    tb_barang.id_barang, tb_barang.nama_barang, tb_barang.jenis, tb_barang.stok_awal, tb_barang.harga, tb_barang.satuan
 ORDER BY
     tb_barang.id_barang") or die(mysqli_error($koneksi));
 
