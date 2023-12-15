@@ -28,9 +28,14 @@
                             <input type="text" class="form-control" id="nama_brg" name="nama_brg">
                             <label>Jenis Barang</label>
                             <select name="jenis" class="form-control" id="jenis">
-                                <option>ATK</option>
-                                <option>Minuman</option>
-                                <option>Makanan</option>
+                            <?php
+                                include './koneksi.php';
+                                $query ="SELECT * FROM tb_jenis";
+                                $sql=mysqli_query($koneksi,$query);
+                                while($data=mysqli_fetch_array($sql)){
+                                  echo"<option value='".$data['jenis']."'>".$data['jenis']."</option>";
+                                }
+                                ?>
                             </select>
                             <label>Satuan</label>
                             <select name="satuan" class="form-control" id="satuan">

@@ -1,7 +1,10 @@
-$(document).ready(function() {
+$(function() {
     $("#tabel").DataTable();
     loadData();
-    // $(".select2").select2();
+
+    $(".select2bs4").select2({
+        theme: "bootstrap4",
+    });
 
     $("#btn_filter").click(function(e) {
         //alert('Apakah Ini Berfungsi ??');
@@ -10,63 +13,42 @@ $(document).ready(function() {
         return false;
     });
 
-    $(document).on("click", "#btn_add", function(e) {
+    $("#btn_add").click(function(e) {
         //alert('Apakah Ini Berfungsi ??');
         //$('#modal_add').modal('show');
         //reset();
         $.ajax({
-            url: "formBrgMasuk/modal_add.php",
+            url: "formKeluar/modal_add.php",
             type: "get",
             success: function(data) {
                 $("#konten").html(data);
                 $("#modal_add").modal("show");
-                console.log("KEBUKA ");
-
-                $(".select2bs4").select2({
-                    theme: "bootstrap4",
-                });
                 reset();
             },
         });
-    });
-    $(document).on("click", "#btn_lihat", function(e) {
-        $.ajax({
-            url: "formBrgMasuk/modal_view.php", // Sesuaikan dengan path file PHP Anda
-            type: "GET", // Atau POST jika diperlukan
-            success: function(data) {
-                // Manipulasi atau tampilkan data di sini
-                $("#konten").html(data);
-
-                $("#modal_view_all").modal("show");
-            },
-            error: function(error) {
-                console.error("Error:", error);
-            },
-        });
+        e.stopImmediatePropagation();
+        return false;
     });
 
     $("#btn_edit").click(function() {
         //alert('Apakah Ini Berfungsi ??');
         //$('#modal_add').modal('show');
         //reset();
+
         var cek = $(".cek:checked");
         if (cek.length == 1) {
             var id = [];
             $(cek).each(function() {
                 id.push($(this).val());
                 // alert(id);
-                var str_data = "id_brg=" + id;
+                var str_data = "id_keluar=" + id;
                 $.ajax({
-                    url: "formBrgMasuk/modal_edit.php",
+                    url: "formKeluar/modal_edit.php",
                     type: "get",
                     data: str_data,
                     success: function(data) {
                         $("#konten").html(data);
                         $("#modal_edit").modal("show");
-
-                        $(".select2bs4").select2({
-                            theme: "bootstrap4",
-                        });
                         //reset();
                     },
                 });
@@ -75,29 +57,25 @@ $(document).ready(function() {
             alert("pilih data satu saja!!");
         }
     });
-    $(document).on("click", "#btn_delete", function(e) {
-        // alert('Apakah Ini Berfungsi ??');
+
+    $("#btn_delete").click(function() {
+        //alert('Apakah Ini Berfungsi ??');
         //$('#modal_add').modal('show');
         //reset();
+
         var cek = $(".cek:checked");
         if (cek.length > 0) {
             var id = [];
-            console.log(cek);
-            reset();
             $(cek).each(function() {
                 id.push($(this).val());
                 // alert(id);
-                var str_data = "id_brg=" + id;
+                var str_data = "id_keluar=" + id;
                 $.ajax({
-                    url: "formBrgMasuk/delete.php",
+                    url: "formKeluar/delete.php",
                     type: "POST",
                     data: str_data,
                     success: function(data) {
-                        // alert(data);
-                        if (data == "1") {
-                            // alert('data berhasil dihapus');
-                            loadData();
-                            // toastr.success("Data Berhasil Dihapus");
+                        if ((data = "1")) {
                             const Toast = Swal.mixin({
                                 toast: true,
                                 position: "top-end",
@@ -113,6 +91,8 @@ $(document).ready(function() {
                                 icon: "success",
                                 title: "Data Berhasil Dihapus",
                             });
+                            // toastr.success("Data Berhasil Dihapus");
+                            loadData();
                         } else {
                             toastr.info(data);
                         }
@@ -125,159 +105,147 @@ $(document).ready(function() {
     });
 
     function reset() {
-        // $('#id_brg').val('');
-        $("#tgl_masuk").val("");
-        $("#barang_select").val("").change();
-        $("#nm_barang").val("");
+        // $('#id_keluar').val('');
+        $("#tgl_keluar").val("");
+        $("#barang_id").val("").change();
+        $("#jml").val("");
         $("#stok").val("");
-        $("#jml_masuk").val("");
+        $("#nama_brg").val("");
     }
 
-    $(document).on("change", "#barang_select", function(e) {
-        var id = $(this).val();
+    $("#barang_id").on("change", function(e) {
+        //alert('tes');
+        var id = $("#barang_id").val();
         var str_data = "id=" + id;
+        // alert(str_data);
         $.ajax({
-            url: "formBrgMasuk/cari.php",
+            url: "formKeluar/cari.php",
             type: "get",
             data: str_data,
             dataType: "json",
             success: function(data) {
-                if (data && typeof data === "object") {
-                    $("#nm_barang").val(data.nama_barang);
-                    $("#stok").val(data.stok_saat_ini);
-                } else {
-                    console.error("Invalid data received from the server");
-                }
-            },
-            error: function(xhr, status, error) {
-                console.log("AJAX error:", status, error);
+                // alert(data[0].nama_barang);
+                // console.log("Da", data[0]);
+                $("#nama_brg").val(data[0].nama_barang);
+                $("#stok").val(data[0].stok_saat_ini);
             },
         });
     });
 
-    $(document).on("click", "#btn_simpan", function(e) {
-        // alert('Apakah Ini Berfungsi ??');
-        var id_masuk = $("#id_masuk").val();
-        var tgl_masuk = $("#tgl_masuk").val();
-        var id_barang = $("#barang_select").val();
-        var jml = $("#jml_masuk").val();
-        if (id_masuk == "") {
-            alert("ID wajib di isi !!");
-        } else if (tgl_masuk == "") {
-            alert("Tanggal wajib di isi !!");
-        } else if (id_barang == "") {
-            alert("Barang wajib di isi !!");
+    $("#btn_simpan").on("click", function(e) {
+        //alert('Apakah Ini Berfungsi ??');
+        var id_keluar = $("#id_keluar").val();
+        var tgl_keluar = $("#tgl_keluar").val();
+        var barang_id = $("#barang_id").val();
+        var jml = $("#jml").val();
+
+        if (id_keluar == "") {
+            alert("id_keluar wajib di isi !!");
+        } else if (tgl_keluar == "") {
+            alert("tgl_keluar wajib di isi !!");
+        } else if (barang_id == "") {
+            alert("barang_id wajib di isi !!");
         } else if (jml == "") {
-            alert("Jumlah wajib di isi !!");
+            alert("jml wajib di isi !!");
         } else {
             var str_data =
-                "id_masuk=" +
-                id_masuk +
-                "&tgl_masuk=" +
-                tgl_masuk +
-                "&id_barang=" +
-                id_barang +
+                "id_keluar=" +
+                id_keluar +
+                "&tgl_keluar=" +
+                tgl_keluar +
+                "&barang_id=" +
+                barang_id +
                 "&jml=" +
                 jml;
             $.ajax({
                 type: "POST",
-                url: "formBrgMasuk/add.php",
+                url: "formKeluar/add.php",
                 dataType: "text",
                 data: str_data,
                 success: function(data) {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        },
-                    });
-                    // alert(data);
                     if (data == "1") {
-                        // alert ('Data Berhasil Disimpan');
+                        // alert("Data Berhasil Disimpan");
                         loadData();
                         $("#modal_add").modal("hide");
                         // toastr.success("Data Berhasil Disimpan");
-                        // showSuccessToast("Data Berhasil Diubah");
-
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            },
+                        });
                         Toast.fire({
                             icon: "success",
-                            title: "Data Berhasil ditambahkan",
+                            title: "Data Berhasil Disimpan",
                         });
                     } else {
-                        // alert(data);
-                        Toast.fire({
-                            icon: "info",
-                            title: "Data Gagal ditambahkan",
-                        });
-                        // toastr.info(data);
+                        //alert(data);
+                        toastr.info(data);
                     }
                 },
             });
         }
     });
-    $(document).on("click", "#btn_ubah", function(e) {
-        // alert("Apakah Ini Berfungsi ??");
-        var id_masuk_e = $("#id_masuk_e").val();
-        var tgl_masuk_e = $("#tgl_masuk_e").val();
-        var jml_e = $("#jml_masuk_e").val();
+
+    $("#btn_ubah").on("click", function(e) {
+        //alert('Apakah Ini Berfungsi ??');
+        var id_keluar_e = $("#id_keluar_e").val();
+        var tgl_keluar_e = $("#tgl_keluar_e").val();
+        var jml_e = $("#jml_e").val();
         var barang_id_e = $("#barang_id_e").val();
 
-        if (id_masuk_e == "") {
-            alert("id_masuk_e wajib di isi !!");
-        } else if (tgl_masuk_e == "") {
-            alert("tgl_masuk_e wajib di isi !!");
+        if (id_keluar_e == "") {
+            alert("id_keluar_e wajib di isi !!");
+        } else if (tgl_keluar_e == "") {
+            alert("tgl_keluar_e wajib di isi !!");
         } else if (jml_e == "") {
             alert("jml_e wajib di isi !!");
         } else if (barang_id_e == "") {
             alert("barang_id_e wajib di isi !!");
         } else {
             var str_data =
-                "id_masuk=" +
-                id_masuk_e +
-                "&tgl_masuk=" +
-                tgl_masuk_e +
+                "id_keluar=" +
+                id_keluar_e +
+                "&tgl_keluar=" +
+                tgl_keluar_e +
                 "&jml=" +
                 jml_e +
                 "&barang_id=" +
                 barang_id_e;
             $.ajax({
                 type: "POST",
-                url: "formBrgMasuk/edit.php",
+                url: "formKeluar/edit.php",
                 dataType: "text",
                 data: str_data,
                 success: function(data) {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                        },
-                    });
                     if (data == "1") {
-                        //alert ('Data Berhasil Diubah');
+                        // alert("Data Berhasil Diubah");
                         loadData();
                         $("#modal_edit").modal("hide");
                         // toastr.success("Data Berhasil Diubah");
-                        // showSuccessToast("Data Berhasil Diubah");
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: "top-end",
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.onmouseenter = Swal.stopTimer;
+                                toast.onmouseleave = Swal.resumeTimer;
+                            },
+                        });
                         Toast.fire({
                             icon: "success",
                             title: "Data Berhasil Diubah",
                         });
                     } else {
                         //alert(data);
-                        Toast.fire({
-                            icon: "info",
-                            title: data,
-                        });
+                        toastr.info(data);
                     }
                 },
             });
@@ -285,16 +253,12 @@ $(document).ready(function() {
     });
 });
 
-function test() {
-    alert("test");
-}
-
 function filterData() {
     var start = $("#start").val();
     var end = $("#end").val();
     var str_data = "start=" + start + "&end=" + end;
     $.ajax({
-        url: "formBrgMasuk/loadData.php",
+        url: "formKeluar/loadData.php",
         type: "get",
         data: str_data,
         success: function(data) {
@@ -314,8 +278,8 @@ function filterData() {
                 buttons: [{
                         extend: "excelHtml5",
                         text: "Report Excel",
-                        title: "Data Barang Masuk",
-                        filename: "Data Barang Masuk",
+                        title: "Data Barang keluar",
+                        filename: "Data Barang keluar",
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5],
                             modifier: {
@@ -326,8 +290,8 @@ function filterData() {
                     {
                         extend: "pdf",
                         text: "Report PDF",
-                        title: "Data Barang Masuk",
-                        filename: "Data Barang Masuk",
+                        title: "Data Barang keluar",
+                        filename: "Data Barang keluar",
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5],
                         },
@@ -350,17 +314,14 @@ function filterData() {
 
 function loadData() {
     $.ajax({
-        url: "formBrgMasuk/getData.php",
+        url: "formKeluar/getData.php",
         type: "get",
         success: function(data) {
-            // Destroy the DataTable first
-            $("#tabel").DataTable().destroy();
-
-            // Update the table body content
+            $("#tabel").dataTable().fnClearTable();
+            $("#tabel").dataTable().fnDraw();
+            $("#tabel").dataTable().fnDestroy();
             $("#tabel tbody").html(data);
-
-            // Initialize DataTable with buttons
-            $("#tabel").DataTable({
+            $("#tabel").dataTable({
                 lengthMenu: [
                     [10, 20, 25, 50, 100, 15, 5, -1],
                     ["10", "20", "25", "50", "100", "15", "5", "Show all"],
@@ -370,21 +331,24 @@ function loadData() {
                 buttons: [{
                         extend: "excelHtml5",
                         text: "Report Excel",
-                        title: "Data Barang Masuk",
-                        filename: "Data Barang Masuk",
+                        title: "Data Barang keluar",
+                        filename: "Data Barang keluar",
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5],
+                            modifier: {
+                                page: "current",
+                            },
                         },
                     },
                     {
                         extend: "pdf",
                         text: "Report PDF",
-                        title: "Data Barang Masuk",
-                        filename: "Data Barang Masuk",
+                        title: "Data Barang keluar",
+                        filename: "Data Barang keluar",
                         exportOptions: {
                             columns: [0, 1, 2, 3, 4, 5],
                         },
-                        customize: function(doc) {
+                        custumize: function(doc) {
                             doc.content[1].table.width = [
                                 "10%",
                                 "20%",
@@ -403,10 +367,10 @@ function loadData() {
 
 function edit_data(a) {
     $.ajax({
-        url: "formBrgMasuk/modal_edit.php",
+        url: "formKeluar/modal_edit.php",
         type: "get",
         data: {
-            id_masuk: a,
+            id_keluar: a,
         },
         success: function(data) {
             $("#konten").html(data);
@@ -417,17 +381,45 @@ function edit_data(a) {
 
 function delete_data(a) {
     $.ajax({
-        url: "formBrgMasuk/delete.php",
+        url: "formKeluar/delete.php",
         type: "POST",
         data: {
-            id_masuk: a,
+            id_keluar: a,
         },
         success: function(data) {
-            if ((data = "1")) {
-                alert("Data Berhasil Diubah");
+            if (data === "1") {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: "Data Berhasil Dihapus",
+                });
                 loadData();
             } else {
-                toastr.danger(data);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    },
+                });
+                Toast.fire({
+                    icon: "error",
+                    title: data,
+                });
             }
         },
     });
