@@ -143,7 +143,7 @@ $(document).ready(function() {
                 }
             },
             error: function(xhr, status, error) {
-                console.error("AJAX error:", status, error);
+                console.log("AJAX error:", status, error);
             },
         });
     });
